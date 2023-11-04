@@ -7,6 +7,7 @@ import InputField from '../../components/Form/InputField'
 import { Entypo } from '@expo/vector-icons';
 import { avatars } from '../../utils/avatar';
 import { useNavigation } from '@react-navigation/native';
+import { RootStackScreenProps } from '../../navigations/RootNavigator';
 
 
 

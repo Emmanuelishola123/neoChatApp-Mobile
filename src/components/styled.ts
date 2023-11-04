@@ -20,7 +20,7 @@ const _Image = styled(Image);
 const _TextInput = styled(TextInput);
 const _TouchacleOpacity = styled(TouchableOpacity);
 const _ScrollView = styled(ScrollView);
-const _BlurView = styled(BlurView)
+const _BlurView = styled(BlurView);
 
 export { _SafeAreaView as SafeAreaView };
 export { _Text as Text };
@@ -30,7 +30,7 @@ export { _Image as Image };
 export { _TextInput as TextInput };
 export { _TouchacleOpacity as TouchableOpacity };
 export { _ScrollView as ScrollView };
-export {_BlurView as BlurView}
+export { _BlurView as BlurView };
 
 export const screenWidth = Dimensions.get("screen").width;
 export const screenHeight = Dimensions.get("screen").height;

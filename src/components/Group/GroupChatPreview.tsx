@@ -4,41 +4,33 @@ import { Image, Pressable, Text, View } from '../styled'
 import { useNavigation } from '@react-navigation/native'
 
 
-interface ChatPreviewType {
-    hasStatus: boolean,
+interface GroupChatPreviewType {
     avatar: string | undefined,
-    isGroup: boolean,
-    lastMessage: string | undefined,
+    lastMessage: { user: string, text: string } | undefined,
     newNessageCounter: number | undefined,
     lastSeen: string,
-    name: string
+    groupName: string
 }
 
 
-const ChatPreview = ({ avatar, name, isGroup, hasStatus, lastMessage, lastSeen, newNessageCounter }: ChatPreviewType) => {
+const GroupChatPreview = ({ avatar, groupName, lastMessage, lastSeen, newNessageCounter }: GroupChatPreviewType) => {
     const navigation = useNavigation()
-
-    const handlePageRoute = (isGroup: boolean | undefined) => {
-        if (isGroup) {
-            navigation.navigate<'Chat'>('GroupChat')
-        }
-        else {
-            navigation.navigate('OneToOneChat')
-        }
-    }
-
-
     return (
-        <Pressable onPress={() => handlePageRoute(isGroup)}>
+        <Pressable onPress={() => navigation.navigate('GroupChat')}>
             <View className='w-full h-fit py-2 px-4 flex-row justify-between items-center'>
                 <View className='space-x-4 flex-row items-center '>
                     {/*  */}
-                    <Pressable className={`${hasStatus && 'border-2 border-primary'} w-12 h-12 rounded-full`}>
+                    <Pressable className={` w-12 h-12 rounded-full`}>
                         <Image className='w-full h-full rounded-full' resizeMode='contain' source={{ uri: avatar || avatar }} />
                     </Pressable>
                     <View className='space-y-2'>
-                        <Text className='text-lg font-bold capitalize text-[#090909]'>{name}</Text>
-                        <Text className='text-xs font-normal text-primaryText '>{lastMessage && lastMessage?.length > 45 ? lastMessage?.slice(0, 45) + '...' : lastMessage}</Text>
+                        <Text className='text-lg font-bold capitalize text-[#090909]'>{groupName}</Text>
+                        {
+                            lastMessage && <View className='flex-row space-x-1 items-center' >
+                                <Text className='text-xs font-semibold text-primaryText '>{lastMessage?.user?.length > 25 ? lastMessage?.user.slice(0, 25) + '...' : lastMessage?.user} : </Text>
+                                <Text className='text-xs font-normal text-primaryText '>{lastMessage?.text?.length > 45 ? lastMessage?.text.slice(0, 45) + '...' : lastMessage?.text}</Text>
+                            </View>
+                        }
                     </View>
                 </View>
                 {/*  */}
@@ -58,4 +50,4 @@ const ChatPreview = ({ avatar, name, isGroup, hasStatus, lastMessage, lastSeen, 
     )
 }
 
-export default ChatPreview
+export default GroupChatPreview

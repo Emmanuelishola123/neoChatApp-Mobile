@@ -1,31 +1,12 @@
 import React from "react";
 import {
-    // BottomTabScreenProps,
     createBottomTabNavigator,
 } from "@react-navigation/bottom-tabs";
-// import Icons from "@expo/vector-icons/MaterialIcons";
-// import { CompositeScreenProps } from "@react-navigation/native";
-// import { RootStackScreenProps } from "./RootNavigator";
 import { CustomBottomTabs } from "../components";
 import { CallScreen, ChatScreen, GroupScreen, StatusScreen } from "../screens";
+import { ChatStackParamLists } from "./types";
 
-export type TabsStackParamList = {
-    Chats: undefined;
-    Groups: undefined;
-    Calls: undefined;
-    Status: undefined;
-};
-
-const TabsStack = createBottomTabNavigator<TabsStackParamList>();
-
-// export type TabsStackScreenProps<T extends keyof TabsStackParamList> =
-//     CompositeScreenProps<
-//         BottomTabScreenProps<TabsStackParamList, T>,
-//         RootStackScreenProps<"TabsStack">
-//     >;
-
-
-
+const TabsStack = createBottomTabNavigator<ChatStackParamLists>();
 
 const ChatTabNavigator = () => {
     return (
