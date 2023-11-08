@@ -1,3 +1,4 @@
+import { callProps } from "../components/Call/type";
 import { userStatusPreviewProps } from "../components/Status/type";
 import { avatars } from "./avatar";
 
@@ -184,8 +185,124 @@ export const viewedStatus: userStatusPreviewProps[] = [
   },
 ];
 
-// Text Status Screen Color
+// Calls History
 
+export const callHistory: callProps[] = [
+  {
+    avatar: avatars[0].url,
+    caller: "Favour James",
+    status: "sent",
+    time: "2:45am",
+    duration: "45 mins",
+  },
+  {
+    avatar: avatars[2].url,
+    caller: "Mary Brian",
+    status: "missed",
+    time: "12:45pm",
+    duration: "25 mins",
+  },
+  {
+    avatar: avatars[3].url,
+    caller: "Emmanuel Ishola",
+    status: "canceled",
+    time: "8:59pm",
+    duration: "1h 50mins",
+  },
+  {
+    avatar: avatars[4].url,
+    caller: "Mark Henry",
+    status: "received",
+    time: "12:45pm",
+    duration: "5 secs",
+  },
+  {
+    avatar: avatars[5].url,
+    caller: "Favour James",
+    status: "sent",
+    time: "2:45am",
+    duration: "45 mins",
+  },
+  {
+    avatar: avatars[6].url,
+    caller: "Mary Brian",
+    status: "missed",
+    time: "12:45pm",
+    duration: "25 mins",
+  },
+  {
+    avatar: avatars[7].url,
+    caller: "Emmanuel Ishola",
+    status: "canceled",
+    time: "8:59pm",
+    duration: "1h 50mins",
+  },
+  {
+    avatar: avatars[8].url,
+    caller: "Mark Henry",
+    status: "received",
+    time: "12:45pm",
+    duration: "5 secs",
+  },
+  {
+    avatar: avatars[0].url,
+    caller: "Favour James",
+    status: "sent",
+    time: "2:45am",
+    duration: "45 mins",
+  },
+  {
+    avatar: avatars[2].url,
+    caller: "Mary Brian",
+    status: "missed",
+    time: "12:45pm",
+    duration: "25 mins",
+  },
+  {
+    avatar: avatars[3].url,
+    caller: "Emmanuel Ishola",
+    status: "canceled",
+    time: "8:59pm",
+    duration: "1h 50mins",
+  },
+  {
+    avatar: avatars[4].url,
+    caller: "Mark Henry",
+    status: "received",
+    time: "12:45pm",
+    duration: "5 secs",
+  },
+  {
+    avatar: avatars[5].url,
+    caller: "Favour James",
+    status: "sent",
+    time: "2:45am",
+    duration: "45 mins",
+  },
+  {
+    avatar: avatars[6].url,
+    caller: "Mary Brian",
+    status: "missed",
+    time: "12:45pm",
+    duration: "25 mins",
+  },
+  {
+    avatar: avatars[7].url,
+    caller: "Emmanuel Ishola",
+    status: "canceled",
+    time: "8:59pm",
+    duration: "1h 50mins",
+  },
+  {
+    avatar: avatars[8].url,
+    caller: "Mark Henry",
+    status: "received",
+    time: "12:45pm",
+    duration: "5 secs",
+  },
+];
+
+// Text Status Screen Color
 export const textStatusScreenColor = [
   "#4CAF50",
   "#2196F3",
