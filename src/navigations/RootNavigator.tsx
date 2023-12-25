@@ -14,9 +14,7 @@ import {
 } from '../screens'
 import { RootStackParamList } from "./types";
 
-
 const RootStack = createNativeStackNavigator<RootStackParamList>();
-
 
 const RootNavigator = () => {
     return (

@@ -4,12 +4,44 @@ import { Image, Pressable, Text, TouchableOpacity, View } from '../../components
 import { BGImage, Logo } from '../../../assets'
 import InputField from '../../components/Form/InputField'
 import { useNavigation } from '@react-navigation/native'
+import { login } from '../../services'
+import LoadingDots from "react-native-loading-dots"
+import { useDispatch } from 'react-redux';
+import { createUser } from '../../redux/reducer/userReducer'
+import { setItemToStorage } from '../../utils/persistence'
+
+
 
 const LoginScreen = () => {
+    const [submitting, setSubmitting] = useState(false)
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const navigation = useNavigation();
 
-    const navigation = useNavigation()
+
+    const dispatch = useDispatch()
+
+    /**
+     * 
+     * @returns 
+     */
+    const loginUser = async () => {
+        setSubmitting(true)
+        try {
+            if (email && password) {
+                const res = await login(email, password)
+                console.log({ res })
+
+                if (!res?.error) {
+                    await setItemToStorage("user", JSON.stringify(res?.data));
+                    dispatch(createUser({ ...res?.data }))
+                    navigation.navigate('ChatsTab')
+                }
+            }
+        } catch (error) { console.log({error});return }
+        finally { setSubmitting(false) }
+    }
+
 
     return (
         <View className='flex-1 items-center justify-start'>
@@ -19,27 +51,35 @@ const LoginScreen = () => {
                 <Text className='text-primaryText text-xl font-bold'>
                     Welcome Back
                 </Text>
-
                 <View>
                     <InputField iconName='person' placeholder='Enter Email' setValue={setEmail} value={email} />
                     <InputField iconName='lock' placeholder='Enter Password' setValue={setPassword} value={password} isPassword={true} />
-                    <TouchableOpacity className='m-0 p-0'>
+                    <TouchableOpacity className='m-0 p-0' onPress={loginUser}>
                         <View className='w-full flex-row items-center justify-center rounded-lg py-2 mt-2 bg-primary '>
-                            <Text className='font-semibold text-xl text-white'>
-                                Sign In
-                            </Text>
+                            {submitting ?
+                                <Text className='font-semibold text-xl text-white'>
+                                    <LoadingDots
+                                        dots={4}
+                                        size={12}
+                                        bounceHeight={5}
+                                    />
+                                </Text>
+                                :
+                                <Text className='font-semibold text-xl text-white'>
+                                    Sign In
+                                </Text>}
                         </View>
                     </TouchableOpacity>
-                <View className='w-full flex-row items-center justify-end space-x-2 mt-1'>
-                    <Text className='text-sm font-semibold text-primaryText'>
-                        Forget Password
-                    </Text>
-                    <Pressable onPress={() => navigation.navigate('ForgetPassword')}>
-                        <Text className='text-primary text-sm font-semibold '>
-                            Reset Here
+                    <View className='w-full flex-row items-center justify-end space-x-2 mt-1'>
+                        <Text className='text-sm font-semibold text-primaryText'>
+                            Forget Password
                         </Text>
-                    </Pressable>
-                </View>
+                        <Pressable onPress={() => navigation.navigate('ForgetPassword')}>
+                            <Text className='text-primary text-sm font-semibold '>
+                                Reset Here
+                            </Text>
+                        </Pressable>
+                    </View>
                 </View>
 
                 <View className='flex-row items-center justify-center space-x-2'>

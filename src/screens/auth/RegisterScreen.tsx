@@ -3,11 +3,14 @@ import React, { useState } from 'react'
 import { Image, Pressable, ScrollView, Text, BlurView, TouchableOpacity, View, screenHeight, screenWidth } from '../../components/styled'
 import { BGImage, Logo } from '../../../assets'
 import InputField from '../../components/Form/InputField'
-
 import { Entypo } from '@expo/vector-icons';
 import { avatars } from '../../utils/avatar';
 import { useNavigation } from '@react-navigation/native';
-import { RootStackScreenProps } from '../../navigations/RootNavigator';
+import { createNewAccount } from '../../services/api/auth';
+import { setItemToStorage } from '../../utils/persistence';
+import { createUser } from '../../redux/reducer/userReducer';
+import { useDispatch } from 'react-redux';
+import LoadingDots from 'react-native-loading-dots';
 
 
 
@@ -19,6 +22,31 @@ const RegisterScreen = () => {
     const [avatar, setAvatar] = useState(avatars[0])
     const [isAvatarOpen, setIsAvatarOpen] = useState(false)
     const navigation = useNavigation()
+    const [submitting, setSubmitting] = useState(false)
+
+    const dispatch = useDispatch()
+
+    const createAccount = async () => {
+        setSubmitting(true)
+        try {
+            if (fullName && email && password && confirmPassword) {
+                const res = await createNewAccount(fullName, email, password, confirmPassword)
+                console.log({ res })
+
+                if (!res?.error) {
+                    await setItemToStorage("user", JSON.stringify(res?.data));
+                    dispatch(createUser({ ...res?.data }))
+                    navigation.navigate('ChatsTab')
+                }
+            }
+
+        } catch (error) {
+            return
+        }
+        finally {
+            setSubmitting(false)
+        }
+    }
 
     return (
         <View className='flex-1 items-center justify-start'>
@@ -41,11 +69,20 @@ const RegisterScreen = () => {
                     <InputField iconName='email' placeholder='Enter Email' setValue={setEmail} value={email} />
                     <InputField iconName='lock' placeholder='Enter Password' setValue={setPassword} value={password} isPassword={true} />
                     <InputField iconName='lock' placeholder='Confirm Password' setValue={setConfirmPassword} value={confirmPassword} isPassword={true} />
-                    <TouchableOpacity onPress={() => navigation.navigate('ChatTabs')}>
+                    <TouchableOpacity onPress={createAccount}>
                         <View className='w-full flex-row items-center justify-center rounded-lg py-2 my-3 bg-primary '>
-                            <Text className='font-semibold text-xl text-white'>
-                                Sign Up
-                            </Text>
+                            {submitting ?
+                                <Text className='font-semibold text-xl text-white'>
+                                    <LoadingDots
+                                        dots={4}
+                                        size={12}
+                                        bounceHeight={5}
+                                    />
+                                </Text>
+                                :
+                                <Text className='font-semibold text-xl text-white'>
+                                    Sign up
+                                </Text>}
                         </View>
                     </TouchableOpacity>
                 </View>

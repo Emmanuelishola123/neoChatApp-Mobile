@@ -1,9 +1,9 @@
 
 import { StatusBar } from 'expo-status-bar'
-import React, { useRef, useState } from 'react'
+import React, { useState } from 'react'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { textStatusScreenColor } from '../../utils/data'
-import { Pressable, Text, TextInput, View, screenHeight, screenWidth } from '../../components/styled';
+import { Pressable, Text, View } from '../../components/styled';
 import { useNavigation } from '@react-navigation/native'
 import { FontAwesome, FontAwesome5, Ionicons } from '@expo/vector-icons';
 import TextEditor from '../../components/Editor/TextEditor';

@@ -4,11 +4,25 @@ import { Image, Pressable, Text, TouchableOpacity, View } from '../../components
 import { BGImage, Logo } from '../../../assets'
 import InputField from '../../components/Form/InputField'
 import { useNavigation } from '@react-navigation/native'
+import { sendPasswordResetLink } from '../../services/api/auth'
 
 const ForgetPasswordScreen = () => {
     const [email, setEmail] = useState('')
-
     const navigation = useNavigation()
+
+    const handleSendPasswordResetLink = async () => {
+
+        try {
+
+            if (email) {
+                const res = await sendPasswordResetLink(email)
+                console.log({ res })
+            }
+
+        } catch (error) {
+            return
+        }
+    }
 
     return (
         <View className='flex-1 items-center justify-start'>
@@ -21,7 +35,7 @@ const ForgetPasswordScreen = () => {
 
                 <View>
                     <InputField iconName='email' placeholder='Enter Email' setValue={setEmail} value={email} />
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={handleSendPasswordResetLink}>
                         <View className='w-full flex-row items-center justify-center rounded-lg py-2 my-2 bg-primary '>
                             <Text className='font-semibold text-xl text-white'>
                                 Forget Password

@@ -1,3 +1,4 @@
+import { BottomSheetTextInput } from "@gorhom/bottom-sheet";
 import { BlurView } from "expo-blur";
 import { styled } from "nativewind";
 import {
@@ -11,6 +12,7 @@ import {
   Dimensions,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import BottomSheet from "@gorhom/bottom-sheet";
 
 const _Text = styled(Text);
 const _View = styled(View);
@@ -21,6 +23,8 @@ const _TextInput = styled(TextInput);
 const _TouchacleOpacity = styled(TouchableOpacity);
 const _ScrollView = styled(ScrollView);
 const _BlurView = styled(BlurView);
+const _BottomSheetTextInput = styled(BottomSheetTextInput);
+const _BottomSheet = styled(BottomSheet);
 
 export { _SafeAreaView as SafeAreaView };
 export { _Text as Text };
@@ -31,6 +35,8 @@ export { _TextInput as TextInput };
 export { _TouchacleOpacity as TouchableOpacity };
 export { _ScrollView as ScrollView };
 export { _BlurView as BlurView };
+export { _BottomSheetTextInput as BottomSheetTextInput };
+export { _BottomSheet as BottomSheet };
 
 export const screenWidth = Dimensions.get("screen").width;
 export const screenHeight = Dimensions.get("screen").height;
