@@ -3,9 +3,10 @@ import { Image, Pressable, Text, View } from '../styled'
 import { Entypo } from '@expo/vector-icons';
 import { avatar } from '../../../assets';
 import { useNavigation } from '@react-navigation/native';
+import { RootStackNavigationProps } from '../../navigations/types';
 
 const NewStatusPreview = () => {
-    const navigation = useNavigation()
+    const navigation = useNavigation<RootStackNavigationProps<"ChatsTab">>();
     return (
         <Pressable onPress={() => navigation.navigate('NewMediaStatus')} android_ripple={{ color: '#4b5563', borderless: false, foreground: false }} className='flex-row space-x-4 items-center py-2 my-2 px-4'>
             <View className={`w-12 h-12 rounded-full relative`}>

@@ -7,9 +7,10 @@ import { FontAwesome5, Entypo, FontAwesome } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { avatar } from '../../../assets';
 import BottomSheet from '@gorhom/bottom-sheet';
+import { RootStackNavigationProps } from '../../navigations/types';
 
 const StatusDisplayScreen = () => {
-  const navigation = useNavigation()
+  const navigation = useNavigation<RootStackNavigationProps<"ChatsTab">>();
   const bottomSheetRef = useRef<BottomSheet>(null);
 
   // variables

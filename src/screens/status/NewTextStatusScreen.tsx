@@ -7,6 +7,7 @@ import { Pressable, Text, View } from '../../components/styled';
 import { useNavigation } from '@react-navigation/native'
 import { FontAwesome, FontAwesome5, Ionicons } from '@expo/vector-icons';
 import TextEditor from '../../components/Editor/TextEditor';
+import { RootStackNavigationProps } from '../../navigations/types';
 
 
 const NewTextStatusScreen = () => {
@@ -17,7 +18,7 @@ const NewTextStatusScreen = () => {
 
 
 
-  const navigation = useNavigation()
+  const navigation = useNavigation<RootStackNavigationProps<"ChatsTab">>();
 
   return (
     <SafeAreaView style={{ backgroundColor: bgColor, opacity: 0.8, flex: 1, position: 'relative' }}>

@@ -1,48 +1,24 @@
 import React, { useState } from "react";
-import {
-  Image,
-  Pressable,
-  Text,
-  TouchableOpacity,
-  View,
-} from "../../components/styled";
+import { Image, Pressable, Text, View } from "../../components/styled";
 import { BGImage, Logo } from "../../../assets";
-import InputField from "../../components/Form/InputField";
-import { useNavigation } from "@react-navigation/native";
-import { sendPasswordResetLink } from "../../services/api/auth";
-import Toast from "react-native-toast-message";
-import LoadingDots from "react-native-loading-dots";
-import { RootStackNavigationProps } from "../../navigations/types";
+import { useNavigation, useRoute } from "@react-navigation/native";
+import OTPTextInput from "react-native-otp-textinput";
+import {
+  RootStackNavigationProps,
+  RootStackScreenProps,
+} from "../../navigations/types";
 
 const ForgetPasswordScreen = () => {
-  const [email, setEmail] = useState("");
+  const [otp, setOtp] = useState("");
   const [submitting, setSubmitting] = useState(false);
 
-  const navigation = useNavigation<RootStackNavigationProps<"ChatsTab">>();;
+  const navigation = useNavigation<RootStackNavigationProps<"ChatsTab">>();
+  const route = useRoute<RootStackScreenProps<"VerifyResetOTP">["route"]>();
+  const { email } = route.params;
 
-  const handleSendPasswordResetLink = async () => {
-    if (!email) return;
-
-    setSubmitting(true)
-    try {
-      const res = await sendPasswordResetLink(email);
-      if (res === null) {
-        throw new Error();
-      }
-      if (!res?.error) {
-        navigation.navigate("VerifyResetOTP", { email });
-      } else {
-        Toast.show({
-          type: "error",
-          text1: "An error occured",
-          text2: res.message,
-        });
-      }
-    } catch (err) {
-      console.log({ err });
-      return;
-    } finally {
-      setSubmitting(false);
+  const handleOTPInput = (val: string) => {
+    if (val.length === 6) {
+      navigation.navigate("ResetPassword", { email, otp });
     }
   };
 
@@ -56,13 +32,13 @@ const ForgetPasswordScreen = () => {
         </Text>
 
         <View>
-          <InputField
-            iconName="email"
-            placeholder="Enter Email"
-            setValue={setEmail}
-            value={email}
+          <OTPTextInput
+            keyboardType="default"
+            inputCount={6}
+            autoFocus
+            handleTextChange={(e) => handleOTPInput(e)}
           />
-          <TouchableOpacity onPress={handleSendPasswordResetLink}>
+          {/* <TouchableOpacity onPress={handleSendPasswordResetLink}>
             <View className="w-full flex-row items-center justify-center rounded-lg py-2 my-2 bg-primary ">
               {submitting ? (
                 <Text className="font-semibold text-xl text-white">
@@ -74,7 +50,7 @@ const ForgetPasswordScreen = () => {
                 </Text>
               )}
             </View>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </View>
 
         <View className="flex-row items-center justify-center space-x-2">

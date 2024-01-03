@@ -5,12 +5,12 @@ import { Image, Pressable, Text, TouchableOpacity, View } from '../styled'
 import { Ionicons, Entypo } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { avatar } from '../../../assets';
-import { ChatStackParamLists, ChatStackScreenProps, RootStackScreenProps } from '../../navigations/types';
+import { ChatStackParamLists, ChatStackScreenProps, RootStackNavigationProps, RootStackScreenProps } from '../../navigations/types';
 
 
 const ChatHead = () => {
 
-    const navigation = useNavigation()
+    const navigation = useNavigation<RootStackNavigationProps<"ChatsTab">>();
 
 
     return (

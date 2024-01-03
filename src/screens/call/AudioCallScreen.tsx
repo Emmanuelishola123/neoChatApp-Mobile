@@ -6,10 +6,11 @@ import { useNavigation } from '@react-navigation/native'
 import { Ionicons, Feather } from '@expo/vector-icons';
 import BottomSheet from '@gorhom/bottom-sheet';
 import { avatar } from '../../../assets'
+import { RootStackNavigationProps } from '../../navigations/types'
 
 
 const AudioCallScreen = () => {
-  const navigation = useNavigation()
+  const navigation = useNavigation<RootStackNavigationProps<"ChatsTab">>();
 
   const bottomSheetRef = useRef<BottomSheet>(null);
 
