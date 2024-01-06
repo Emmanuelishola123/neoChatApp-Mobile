@@ -13,21 +13,20 @@ import {
 import { statusProps } from "../components/Status/type";
 
 export type RootStackParamList = {
-  ChatsTab: BottomTabScreenProps<ChatStackParamLists>;
-  Login: undefined;
-  Register: undefined;
-  ResetPassword: { email: string; otp: string };
-  VerifyResetOTP: { email: string };
-  ForgetPassword: undefined;
-  OneToOneChat: undefined;
-  GroupChat: undefined;
-  AudioCall: undefined;
-  VideoCall: undefined;
-  NewTextStatus: undefined;
-  NewMediaStatus: undefined;
-  StatusDisplayScreen: statusProps | statusProps[];
-  Profile: { isMine?: boolean | undefined; userId?: string | undefined };
-  Camera: { from: string; to?: string };
+    ChatsTab: BottomTabScreenProps<ChatStackParamLists>
+    Login: undefined,
+    Register: undefined,
+    ResetPassword: undefined,
+    ForgetPassword: undefined,
+    OneToOneChat: undefined,
+    GroupChat: undefined,
+    AudioCall: undefined,
+    VideoCall: undefined,
+    NewTextStatus: undefined,
+    NewMediaStatus: undefined,
+    StatusDisplayScreen: statusProps | statusProps[],
+    Profile: { userId: string },
+    Camera: { from: string, to?: string }
 };
 export type ChatStackParamLists = {
   Chats: {

@@ -7,7 +7,6 @@ import { avatar } from '../../../assets'
 import { ChatPreview } from '../../components'
 import { avatars } from '../../utils/avatar'
 import { ChatStackScreenProps } from '../../navigations/types'
-import SwipeableChatPreview from '../../components/Chat/SwipeableChatPreview'
 
 
 const PersonalChatScreen = ({ navigation }: ChatStackScreenProps<'Chats'>) => {

@@ -17,9 +17,9 @@ import { Platform } from "react-native";
 import { RootStackNavigationProps } from "../../navigations/types";
 
 const NewMediaStatusScreen = () => {
-  const [duration, setDuration] = useState(24);
-  const [caption, setcCaption] = useState<string | undefined>(undefined);
-  const [media, setMedia] = useState<string | undefined>(undefined);
+  const [duration, setDuration] = useState(24)
+  const [caption, setcCaption] = useState<string | undefined>(undefined)
+  const [media, setMedia] = useState<string | undefined>(undefined)
 
   const navigation = useNavigation<RootStackNavigationProps<"ChatsTab">>();
 
