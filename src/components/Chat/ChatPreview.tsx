@@ -3,6 +3,7 @@ import React from 'react'
 import { Image, Pressable, Text, View } from '../styled'
 import { useNavigation } from '@react-navigation/native'
 import SwipeableChatPreview from './SwipeableChatPreview'
+import { RootStackNavigationProps } from '../../navigations/types'
 
 
 interface ChatPreviewType {
@@ -17,11 +18,11 @@ interface ChatPreviewType {
 
 
 const ChatPreview = ({ avatar, name, isGroup, hasStatus, lastMessage, lastSeen, newNessageCounter }: ChatPreviewType) => {
-    const navigation = useNavigation()
+    const navigation = useNavigation<RootStackNavigationProps<"ChatsTab">>();
 
     const handlePageRoute = (isGroup: boolean | undefined) => {
         if (isGroup) {
-            navigation.navigate<'Chat'>('GroupChat')
+            navigation.navigate('GroupChat')
         }
         else {
             navigation.navigate('OneToOneChat')

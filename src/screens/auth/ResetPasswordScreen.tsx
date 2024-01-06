@@ -4,12 +4,13 @@ import { Image, Pressable, Text, TouchableOpacity, View } from '../../components
 import { BGImage, Logo } from '../../../assets'
 import InputField from '../../components/Form/InputField'
 import { useNavigation } from '@react-navigation/native'
+import { RootStackNavigationProps } from '../../navigations/types'
 
 const ResetPasswordScreen = () => {
     const [password, setPassword] = useState('')
     const [confirmPassword, setConfirmPassword] = useState('')
 
-    const navigation = useNavigation()
+    const navigation = useNavigation<RootStackNavigationProps<"ChatsTab">>();
 
     return (
         <View className='flex-1 items-center justify-start'>
