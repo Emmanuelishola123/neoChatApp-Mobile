@@ -5,9 +5,10 @@ import { Image, Pressable, Text, TouchableOpacity, View } from '../styled'
 import { Ionicons, Entypo } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { avatar } from '../../../assets';
+import { RootStackNavigationProps } from '../../navigations/types';
 
 const GroupChatHead = () => {
-    const navigation = useNavigation()
+    const navigation = useNavigation<RootStackNavigationProps<"ChatsTab">>();
 
     return (
         <View className='flex-row items-center justify-between w-full h-14 p-2 bg-[#f9f9f9]' >

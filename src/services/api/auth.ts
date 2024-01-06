@@ -19,7 +19,7 @@ export const createNewAccount = async (
   name: string,
   email: string,
   password: string,
-  confirmPassword: string,
+  confirmPassword: string
 ): Promise<httpResponseType | null> => {
   try {
     const response = await api.post("/auth/register", {
@@ -38,6 +38,7 @@ export const createNewAccount = async (
   }
 };
 
+
 /**
  * Login User to System
  *
@@ -47,15 +48,13 @@ export const createNewAccount = async (
  */
 export const login = async (
   emailOrUsername: string,
-  password: string,
+  password: string
 ): Promise<httpResponseType | null> => {
   try {
     const response = await api.post("/auth/login", {
       emailOrUsername,
       password,
     });
-
-    console.log(response.data);
     return response.data;
   } catch (error) {
     console.log({ error });
@@ -64,7 +63,7 @@ export const login = async (
 };
 
 export const sendPasswordResetLink = async (
-  email: string,
+  email: string
 ): Promise<httpResponseType | null> => {
   try {
     const response = await api.put("/auth/forgot-password", {

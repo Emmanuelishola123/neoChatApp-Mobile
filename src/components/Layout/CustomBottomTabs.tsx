@@ -79,7 +79,7 @@ const TabItem = ({
       className="flex-1 items-center justify-center flex-col py-3"
     >
       <View
-        className={`${isActive ? 'w-24 bg-black px-3' : 'w-9 bg-transparent'} h-10 flex-row items-center justify-center rounded-full`}
+        className={`${isActive ? 'w-24 bg-primary px-3' : 'w-9 bg-transparent'} h-10 flex-row items-center justify-center rounded-full`}
       >
         {isActive ? renderActiveTabIcon(routeName) : renderTabIcon(routeName)}
         {isActive && (

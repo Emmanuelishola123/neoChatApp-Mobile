@@ -3,6 +3,7 @@ export { default as RegisterScreen } from "./auth/RegisterScreen";
 export { default as LoginScreen } from "./auth/LoginScreen";
 export { default as ForgetPasswordScreen } from "./auth/ForgetPasswordScreen";
 export { default as ResetPasswordScreen } from "./auth/ResetPasswordScreen";
+export { default as VerifyResetOTPScreen } from "./auth/VerifyResetOTPScreen";
 // Chat Screens
 export { default as ChatScreen } from "./chat/PersonalChatScreen";
 export { default as GroupScreen } from "./chat/GroupChatScreen";

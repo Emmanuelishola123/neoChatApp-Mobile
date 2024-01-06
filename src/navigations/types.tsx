@@ -1,6 +1,15 @@
-import { BottomTabScreenProps } from "@react-navigation/bottom-tabs";
-import { CompositeScreenProps } from "@react-navigation/native";
-import { NativeStackScreenProps } from "@react-navigation/native-stack";
+import {
+  BottomTabScreenProps,
+  BottomTabNavigationProp,
+} from "@react-navigation/bottom-tabs";
+import {
+  CompositeNavigationProp,
+  CompositeScreenProps,
+} from "@react-navigation/native";
+import {
+  NativeStackScreenProps,
+  NativeStackNavigationProp,
+} from "@react-navigation/native-stack";
 import { statusProps } from "../components/Status/type";
 
 export type RootStackParamList = {
@@ -19,39 +28,33 @@ export type RootStackParamList = {
     Profile: { userId: string },
     Camera: { from: string, to?: string }
 };
-
-export type RootStackScreenProps<T extends keyof RootStackParamList> = NativeStackScreenProps<RootStackParamList, T>
-
 export type ChatStackParamLists = {
-    Chats: {
-        avatar: string | null,
-        name: string,
-        lastMessage: string,
-        lastSeen: string,
-        newNessageCounter?: number | null
-        hasStatus?: boolean,
-        isGroup?: boolean
-    };
-    Groups: undefined;
-    Calls: undefined;
-    Status: undefined;
+  Chats: {
+    avatar: string | null;
+    name: string;
+    lastMessage: string;
+    lastSeen: string;
+    newNessageCounter?: number | null;
+    hasStatus?: boolean;
+    isGroup?: boolean;
+  };
+  Groups: {};
+  Calls: {};
+  Status: {};
 };
 
-export type ChatStackScreenProps<T extends keyof ChatStackParamLists> =
-    CompositeScreenProps<
-        BottomTabScreenProps<ChatStackParamLists, T>,
-        RootStackScreenProps<keyof RootStackParamList>
-    >;
+export type RootStackScreenProps<T extends keyof RootStackParamList> =
+  NativeStackScreenProps<RootStackParamList, T>;
 
+export type RootStackNavigationProps<T extends keyof RootStackParamList> =
+  NativeStackNavigationProp<RootStackParamList, T>;
 
+export type ChatStackScreenProps = CompositeScreenProps<
+  BottomTabScreenProps<ChatStackParamLists, "Chats">,
+  RootStackScreenProps<keyof RootStackParamList>
+>;
 
-
-
-
-// export type ChatStackScreenProps<T extends keyof ChatStackParamLists > =
-//     CompositeScreenProps<
-//         BottomTabScreenProps<ChatStackParamLists, T>,
-//         RootStackScreenProps<''>
-//     >;
-
-
+export type ChatStackScreenNavigationProps = CompositeNavigationProp<
+  BottomTabNavigationProp<ChatStackParamLists, "Chats">,
+  RootStackNavigationProps<keyof RootStackParamList>
+>;

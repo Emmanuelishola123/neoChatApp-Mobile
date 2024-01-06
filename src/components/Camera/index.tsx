@@ -7,6 +7,7 @@ import { Ionicons, MaterialIcons } from '@expo/vector-icons';
 import { useNavigation } from '@react-navigation/native';
 import { ExpoCameraProps } from './types';
 import * as ImagePicker from 'expo-image-picker';
+import { RootStackNavigationProps } from '../../navigations/types';
 
 export default function ExpoCamera(props: ExpoCameraProps) {
 
@@ -15,7 +16,7 @@ export default function ExpoCamera(props: ExpoCameraProps) {
     const [flashMode, setFlashMode] = useState(FlashMode.off)
     const [photo, setPhoto] = useState<string | undefined>(undefined)
 
-    const navigation = useNavigation()
+    const navigation = useNavigation<RootStackNavigationProps<"ChatsTab">>();
     const cameraRef = useRef<Camera | null>(null)
 
     const handleCameraAction = async () => {

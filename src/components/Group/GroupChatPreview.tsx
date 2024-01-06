@@ -2,6 +2,7 @@
 import React from 'react'
 import { Image, Pressable, Text, View } from '../styled'
 import { useNavigation } from '@react-navigation/native'
+import { RootStackNavigationProps } from '../../navigations/types'
 
 
 interface GroupChatPreviewType {
@@ -14,7 +15,7 @@ interface GroupChatPreviewType {
 
 
 const GroupChatPreview = ({ avatar, groupName, lastMessage, lastSeen, newNessageCounter }: GroupChatPreviewType) => {
-    const navigation = useNavigation()
+    const navigation = useNavigation<RootStackNavigationProps<"ChatsTab">>();
     return (
         <Pressable onPress={() => navigation.navigate('GroupChat')}>
             <View className='w-full h-fit py-2 px-4 flex-row justify-between items-center'>

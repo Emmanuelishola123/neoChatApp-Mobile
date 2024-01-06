@@ -9,7 +9,7 @@ import { persistencePropTypes } from "./type";
  */
 export const setItemToStorage = async (
   key: persistencePropTypes,
-  value: string,
+  value: string
 ) => {
   try {
     const jsonValue = JSON.stringify(value);
@@ -29,7 +29,8 @@ export const setItemToStorage = async (
 export const getItemFromStorage = async (key: persistencePropTypes) => {
   try {
     const jsonValue = await AsyncStorage.getItem(key);
-    return jsonValue != null ? JSON.parse(jsonValue) : null;
+    const val = jsonValue != null ? JSON.parse(jsonValue) : null;
+    return val;
   } catch (e) {
     console.log({ e });
     return null;
