@@ -31,7 +31,7 @@ const GroupChat = () => {
           <GroupTextMessage isSender={false} />
           <GroupMediaMessage isSender={true} />
           <GroupTextMessage isSender={false} />
-          <GroupMediaMessage isSender={false} />
+          <GroupMediaMessage isSender={true} />
         </ScrollView>
       </View>
 

@@ -16,7 +16,7 @@ export type RootStackParamList = {
     NewTextStatus: undefined,
     NewMediaStatus: undefined,
     StatusDisplayScreen: statusProps | statusProps[],
-    Profile: { isMine?: boolean | undefined, userId?: string | undefined },
+    Profile: { userId: string },
     Camera: { from: string, to?: string }
 };
 

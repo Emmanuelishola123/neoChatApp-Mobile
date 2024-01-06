@@ -30,3 +30,6 @@ export { default as TextEditor } from "./Editor/TextEditor";
 
 // Calls
 export { default as CallPreview } from "./Call/CallPreview";
+
+// User
+export { default as UserProfile } from './User'

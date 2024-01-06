@@ -10,7 +10,7 @@ import { avatar } from '../../../assets';
 import { KeyboardAvoidingView } from 'react-native';
 import { Platform } from 'react-native';
 
-const NewMediaStatusScreen = (type: mediaType) => {
+const NewMediaStatusScreen = () => {
   const [duration, setDuration] = useState(24)
   const [caption, setcCaption] = useState<string | undefined>(undefined)
   const [media, setMedia] = useState<string | undefined>(undefined)
